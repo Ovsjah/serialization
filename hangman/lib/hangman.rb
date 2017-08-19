@@ -86,8 +86,8 @@ class Hangman
     @player = player
   end
   
-  def modify(letter)
-    Hangman.found_letters << letter unless letter.is_a? Regexp
+  def modify(letter=nil)
+    Hangman.found_letters << letter unless letter.nil?
     letters = Hangman.found_letters.join
     copy = secret_word.delete(letters)
     underscored_word = secret_word.gsub(/[#{copy}]/, '_ ')
@@ -126,7 +126,7 @@ class Hangman
   Enter your guess (one letter or the whole word)!}
 
       puts hangman[turn]
-      guessed = modify(/\w+/)
+      guessed = modify()
       puts guessed
       print '>> '
       guess = gets.chomp.downcase
